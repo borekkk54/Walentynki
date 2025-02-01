@@ -1,60 +1,23 @@
-const frontPocket = document.querySelector('.pocket')
-const frontFlap = document.querySelector('.flap')
-const envelope = document.querySelector('#envelope')
-const btnOpen = document.querySelector('#open')
-const btnReset = document.querySelector('#reset')
-const btnYes = document.querySelector('#yes')
-const btnNo = document.querySelector('#no')
-const letter = document.querySelector('.letter')
-const question = document.querySelector('.question')
-const counterDisplay = document.querySelector('#counter-display')
-const popup = document.querySelector('.popup')
-const closePopup = document.querySelector('.close-popup')
+const wrapper = document.querySelector(".wrapper");
+const question = document.querySelector(".question");
+const gif = document.querySelector(".gif");
+const takBtn = document.querySelector(".tak-btn");
+const nieBtn = document.querySelector(".nie-btn");
 
-const letterRect = letter.getBoundingClientRect();
-const btnNoRect = btnNo.getBoundingClientRect();
+takBtn.addEventListener("click", () => {
+  question.innerHTML = "Yeyyyy!!! <3";
+  gif.src =
+    "https://media1.tenor.com/m/sx0mJIjy61gAAAAC/milk-and-mocha-bear-couple.gif";
+});
 
-let isOpen = false;
-let isVisible = false;
+nieBtn.addEventListener("mouseover", () => {
+  const nieBtnRect = nieBtn.getBoundingClientRect();
+  const maxX = window.innerWidth - nieBtnRect.width;
+  const maxY = window.innerHeight - nieBtnRect.height;
 
-frontFlap.addEventListener('click', (e) => {
-    e.target.textContext = !isOpen ? open() : close();
-    isOpen = !isOpen 
-})
-frontPocket.addEventListener('click', (e) => {
-    e.target.textContext = !isOpen ? open() : close();
-    isOpen = !isOpen 
-})
-btnYes.addEventListener('click', () => {
-    !isVisible ? popup.classList.remove('hidden') : popup.classList.add('hidden')
-    isVisible = !isVisible
-})
-closePopup.addEventListener('click', () => {
-    !isVisible ? popup.classList.remove('hidden') : popup.classList.add('hidden')
-    isVisible = !isVisible
-})
-btnNo.addEventListener('mouseover', () => {
-    const i = Math.floor(Math.random() * (letterRect.width - btnNoRect.width)) + 1
-    const j = Math.floor(Math.random() * (letterRect.height - btnNoRect.height)) + 1
+  const randomX = Math.floor(Math.random() * maxX);
+  const randomY = Math.floor(Math.random() * maxY);
 
-    btnNo.style.left = i + 'px'
-    btnNo.style.top = j + 'px'
-})
-btnNo.addEventListener('click', () => {
-    const i = Math.floor(Math.random() * (letterRect.width - btnNoRect.width)) + 1
-    const j = Math.floor(Math.random() * (letterRect.height - btnNoRect.height)) + 1
-
-    btnNo.style.left = i + 'px'
-    btnNo.style.top = j + 'px'
-})
-
-
-function open() {
-    envelope.classList.add('open')
-    envelope.classList.remove('close')
-}
-
-function close() {
-    envelope.classList.add('close')
-    envelope.classList.remove('open')
-}
+  nieBtn.style.left = randomX + "px";
+  nieBtn.style.top = randomY + "px";
+});
